@@ -19,7 +19,6 @@
   "homepage": "https://github.com/Blake-SRTC/IoT-RPI-PlantWatering#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "serialport": "^10.4.0",
     "socket.io": "^4.4.1"
   }
 }
