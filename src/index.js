@@ -14,6 +14,9 @@ app.get("/", (req, res) => {
     res.send("Bienveinido");
 });
 
+// Middleware para usar otras caracteristicas de json
+app.use(express.json());
+
 routerApi(app);
 
 // io.on('connection', (socket) => {

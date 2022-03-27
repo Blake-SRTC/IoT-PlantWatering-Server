@@ -1,17 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
+
+
 router.post("/", (req, res) => {
-    const { temp, hume } = req.query;
-    if (temp && hume) {
-        // res.status(200).json({
-        //     temp,
-        //     hume,
-        // });
-        res.send('Recibido')
-    } else {
-        res.send("No existen parametros :v");
-    }
+    console.log(req.body);
+    res.send('Recibido');        
 });
 
 module.exports = router;
