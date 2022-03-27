@@ -1,7 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h>
 #include <DHT.h>
-//#include <DHT_U.h>
 #include <ESP8266HTTPClient.h>
 #include <ArduinoJson.h>
 
@@ -33,6 +32,7 @@ void setup() {
 
   Serial.println("");
 
+  // Parametros de red recibidos
   if (cont < max_intentos) {
     Serial.println("WiFi conectado");
     Serial.println(WiFi.SSID());
@@ -59,7 +59,8 @@ void loop() {
   delay(2000);
   digitalWrite(D2, HIGH);
   delay(2000);
-  
+
+  // Comprobar estado WiFi
   if (WiFi.status()== WL_CONNECTED) {
 
     // DHT
@@ -78,7 +79,8 @@ void loop() {
     // JSON serializacion
     String json;
     serializeJson(doc, json);
-    
+
+    // Client POST Json
     WiFiClient client;
     HTTPClient http;
     
@@ -88,6 +90,7 @@ void loop() {
 
     int codigo_respuesta = http.POST(json);
 
+    // Respuestas de POST
     if(codigo_respuesta > 0) {
       Serial.println("Codigo HTTP: " + String(codigo_respuesta));
       if(codigo_respuesta == 200) {
