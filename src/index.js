@@ -5,7 +5,9 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-const routerApi = require("./routes/index");
+require("./db");
+
+const routerApi = require("../routes/index");
 
 app.get("/", (req, res) => {
     //res.sendFile(__dirname + '/index.html');
