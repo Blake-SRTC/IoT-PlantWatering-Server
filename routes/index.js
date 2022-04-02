@@ -1,11 +1,11 @@
 const express = require('express');
 
-const dht11 = require('./temp.hume.router');
+const sensores = require('./ambiente.router');
 
 function routerApi(app) {
     const router = express.Router();
     app.use('/api/v1/', router);
-    router.use('/ambiente', dht11);
+    router.use('/ambiente', sensores);
 }
 
 module.exports = routerApi;

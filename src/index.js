@@ -5,8 +5,10 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
+// Configuracion base de datos
 require("./db");
 
+// Configuraion API
 const routerApi = require("../routes/index");
 
 app.get("/", (req, res) => {
