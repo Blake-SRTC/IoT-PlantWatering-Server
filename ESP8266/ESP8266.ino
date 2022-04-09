@@ -53,7 +53,7 @@ void setup() {
 
     // Inicia Relay
     pinMode(D2, OUTPUT);
-    digitalWrite(D2, HIGH);
+    digitalWrite(D2, LOW);
   }
   else {
     Serial.println("Error de Conexion");
@@ -69,16 +69,16 @@ void loop() {
     // Status WiFi
     digitalWrite(D8, HIGH);
 
-    // DHT
+    // DATOS DHT
     hume = dht.readHumidity();
     temp = dht.readTemperature();
     Serial.println("Temperatura: " + String(temp) + " C " + " Humedad: " + String(hume) + " %");
 
-    // RELAY
+    // ACTIVAR RELAY
     if (temp >= 20) {
-      digitalWrite(D2, LOW);
-    }else if (temp < 20) {
       digitalWrite(D2, HIGH);
+    }else if (temp < 20) {
+      digitalWrite(D2, LOW);
     }
 
     // JSON DOC
