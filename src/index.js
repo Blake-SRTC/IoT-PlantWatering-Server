@@ -7,8 +7,10 @@ const io = new Server(server);
 
 const path = require("path");
 const router = express.Router();
+
 // Configuracion base de datos
 require("./db");
+// Modelos para DB
 const data = require("../models/shema");
 
 // Middleware para usar otras caracteristicas de json
@@ -35,10 +37,11 @@ router.post("/api/v1/ambiente", (req, res) => {
         .catch((err) => console.error("Datos no validos"));
 });
 
-server.listen(3000, () => {
-    console.log("listening on *:3000");
+server.listen(5000, () => {
+    console.log("listening on *:5000");
 });
 
+// Sockets tiempo real
 io.on("connection", (socket) => {
     console.log("a user connected");
 });

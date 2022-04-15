@@ -9,6 +9,15 @@ const iotShema = new Schema({
         type: Number,
         default: 0,
     },
+    date: {
+        type: Date,
+        default: function (){
+            // Correccion zona horaria
+            var utc = new Date();
+            utc.setHours(utc.getHours() + -4);
+            return utc;
+        },
+    },
     // hume_suelo: {
     //     type: Number,
     //     default: 00,
