@@ -20,16 +20,16 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use("/", router);
 
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/index.html"));
-})
+});
 
 router.post("/api/v1/ambiente", (req, res) => {
     console.log(req.body);
     res.send("Recibido");
 
     // Enviar a front
-    io.emit('data', req.body);
+    io.emit("data", req.body);
 
     // Enviar a DB
     insertData(req.body)
