@@ -18,10 +18,10 @@ const iotShema = new Schema({
             return utc;
         },
     },
-    // hume_suelo: {
-    //     type: Number,
-    //     default: 00,
-    // },
+    hume_suelo: {
+        type: Number,
+        default: 0,
+    },
 });
 
 module.exports = model("ambiente", iotShema);

@@ -15,7 +15,7 @@ byte max_intentos = 50;
 
 // Server
 //const char* host = "http://10.10.10.6:3000/api/v1/ambiente";
-const char* host = "http://192.168.100.218:5000/api/v1/ambiente";
+const char* host = "http://137.184.34.228:5000/api/v1/ambiente";
 
 // DHT Sensor //
 DHT dht(D1, DHT11);
@@ -54,6 +54,9 @@ void setup() {
     // Inicia Relay
     pinMode(D2, OUTPUT);
     digitalWrite(D2, LOW);
+
+    // Inicia sensor suelo
+    pinMode(A0, INPUT);
   }
   else {
     Serial.println("Error de Conexion");
@@ -80,6 +83,31 @@ void loop() {
     }else if (temp < 20) {
       digitalWrite(D2, LOW);
     }
+    
+    //DATOS HUMEDAS SUELO
+    int suelo = analogRead(A0);
+    Serial.print("La lectura es: ");
+    Serial.println(suelo);
+    //   lecturas entre 1000 - 1023
+    if (suelo >= 1000){
+      Serial.println(">> EL SENSOR ESTA DECONECTADO O FUERA DEL SUELO <<");
+    }
+    else if (suelo <1000 && suelo >= 600){
+      Serial.println(">> EL SUELO ESTA SECO <<");
+    }
+    else if (suelo < 600 && suelo >= 370){
+      Serial.println(">> EL SUELO ESTA HUMEDO <<");
+    }
+    else if (suelo < 370){
+      Serial.println(">> EL SENSOR ESTA PRACTICAMENTE EN AGUA <<");
+    }
+    delay(1000);
+    
+    //Convirtiendo a Porcentaje
+    int sueloPorcentaje = map(suelo, 1023, 0, 0, 100);
+    Serial.print("La Humedad es del: ");
+    Serial.print(sueloPorcentaje);
+    Serial.println("%");
 
     // JSON DOC
     String temperatura = String(temp);
@@ -88,6 +116,7 @@ void loop() {
     DynamicJsonDocument doc(2048);
     doc["Temperatura"] = temperatura;
     doc["Humedad"] = humedad;
+    doc["Hume_suelo"] = sueloPorcentaje;
 
     // JSON serializacion
     String json;
