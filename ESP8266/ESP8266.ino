@@ -76,14 +76,7 @@ void loop() {
     hume = dht.readHumidity();
     temp = dht.readTemperature();
     Serial.println("Temperatura: " + String(temp) + " C " + " Humedad: " + String(hume) + " %");
-
-    // ACTIVAR RELAY
-    if (temp >= 20) {
-      digitalWrite(D2, HIGH);
-    }else if (temp < 20) {
-      digitalWrite(D2, LOW);
-    }
-    
+  
     //DATOS HUMEDAS SUELO
     int suelo = analogRead(A0);
     Serial.print("La lectura es: ");
@@ -108,6 +101,16 @@ void loop() {
     Serial.print("La Humedad es del: ");
     Serial.print(sueloPorcentaje);
     Serial.println("%");
+
+    // ACTIVAR RELAY
+    if (sueloPorcentaje >= 45) {
+      digitalWrite(D2, LOW);
+    }else if (sueloPorcentaje < 45) {
+      digitalWrite(D2, HIGH);
+    }
+    delay(3000);
+    // APAGAR RELAY despues de regar x segundos
+    digitalWrite(D2, LOW);
 
     // JSON DOC
     String temperatura = String(temp);
