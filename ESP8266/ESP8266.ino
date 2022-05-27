@@ -7,8 +7,10 @@
 // WIFI //
 //const char* ssid = "ST-MKT-1";
 //const char* pass = "12345678";
-const char* ssid = "Blake_ST";
-const char* pass = "per1vat!UGK8dzk3qcy";
+//const char* ssid = "Blake_ST";
+//const char* pass = "per1vat!UGK8dzk3qcy";
+const char* ssid = "Dragon";
+const char* pass = "saul2021";
 
 byte cont = 0;
 byte max_intentos = 50;
