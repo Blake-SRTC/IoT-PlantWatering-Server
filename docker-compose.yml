@@ -6,7 +6,7 @@ services:
         restart: always
         build: .
         ports: 
-            - "5000:5000"
+            - "4050:4050"
         environment:
             - TZ=America/La_Paz
         # links:
