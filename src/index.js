@@ -16,6 +16,12 @@ const data = require("../models/shema");
 // Middleware para usar otras caracteristicas de json
 app.use(express.json());
 
+// Variables de cache de datos
+let temp = 0;
+let hume = 0;
+let hume_sue = 0;
+let agua = 0;
+
 // Rutas API
 app.use(express.static("public"));
 app.use("/", router);
@@ -29,7 +35,12 @@ router.post("/api/v1/ambiente", (req, res) => {
     res.send("Recibido");
 
     // Enviar a front
-    io.emit("data", req.body);
+    temp = req.body.Temperatura;
+    hume = req.body.Humedad;
+    hume_sue = req.body.Hume_suelo;
+    agua = req.body.Agua;
+
+    io.emit("data", { Temperatura: temp, Humedad: hume, Hume_suelo: hume_sue, Agua: agua });
 
     // Enviar a DB
     insertData(req.body)
@@ -37,12 +48,13 @@ router.post("/api/v1/ambiente", (req, res) => {
         .catch((err) => console.error("Datos no validos"));
 });
 
-server.listen(5000, () => {
-    console.log("listening on *:5000");
+server.listen(4050, () => {
+    console.log("listening on *:4050");
 });
 
 // Sockets tiempo real
 io.on("connection", (socket) => {
+    io.emit("data", { Temperatura: temp, Humedad: hume, Hume_suelo: hume_sue, Agua: agua });
     console.log("a user connected");
 });
 
