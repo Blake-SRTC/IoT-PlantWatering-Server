@@ -1,39 +1,139 @@
-<!DOCTYPE HTML><html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="./estilos.css">
-  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
-</head>
-<body>
-  <h2>IoT PlantWatering Monitor</h2>
-  <p>
-    <i class="fas fa-thermometer-half" style="color:#059e8a;"></i> 
-    <span class="dht-labels">Temperatura Ambiente</span> 
-    <span id="temperature">%TEMPERATURE%</span>
-    <sup class="units">°C</sup>
-  </p>
-  <p>
-    <i class="fas fa-tint" style="color:#00add6;"></i> 
-    <span class="dht-labels">Humedad Ambiente</span>
-    <span id="humidity">%HUMIDITY%</span>
-    <sup class="units">%</sup>
-  </p>
-  <p>
-    <i class="fas fa-tint" style="color:#00add6;"></i> 
-    <span class="dht-labels">Humedad Suelo</span>
-    <span id="humidity_ground">%HUMIDITY_GROUND%</span>
-    <sup class="units">%</sup>
-  </p>
-  <p>
-    <i class="fas fa-tint" style="color:#00add6;"></i> 
-    <span class="dht-labels">Agua Total: </span>
-    <span id="water">%WATER%</span>
-    <sup class="units">L</sup>
-  </p>
-  <p>
-    <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=6259d214-8858-404c-813e-eda326021a72&maxDataAge=10&theme=light&autoRefresh=true"></iframe>
-  </p>
-</body>
-<script src="./scripts.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+            integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+            crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" type="text/css" href="styles.css" />
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <title>UCB IoT</title>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="topbar">
+                <div class="logo">
+                    <h2>UCB La Paz</h2>
+                </div>
+            </div>
+            <div class="sidebar">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <i class="fas fa-th-large"></i>
+                            <div>Dashboard</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="main">
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">
+                                <p>
+                                    <span id="temperature">%T%</span>
+                                    <sup class="units">°C</sup>
+                                </p>
+                            </div>
+                            <div class="card-name">Temperatura Ambiente</div>
+                        </div>
+                        <div class="icon-box">
+                            <i
+                                class="fas fa-thermometer-half"
+                                style="color: #059e8a"
+                            ></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">
+                                <span id="humidity">%H%</span>
+                                <sup class="units">%</sup>
+                            </div>
+                            <div class="card-name">Humedad Ambiente</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="fas fa-tint" style="color: #00add6"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">
+                                <span id="humidity_ground">%HS%</span>
+                                <sup class="units">%</sup>
+                            </div>
+                            <div class="card-name">Humedad Suelo</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="fas fa-tint" style="color: #00add6"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">
+                                <span id="water">%A%</span>
+                                <sup class="units">L</sup>
+                            </div>
+                            <div class="card-name">Agua Total</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="fas fa-tint" style="color: #00add6"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="charts">
+                    <div class="chart">
+                        <h2>Analisis de datos</h2>
+                        <div class="tabla">
+                            <iframe
+                                style="
+                                    background: #ffffff;
+                                    border: none;
+                                    border-radius: 2px;
+                                    box-shadow: 0 2px 10px 0
+                                        rgba(70, 76, 79, 0.2);
+                                "
+                                width="640"
+                                height="480"
+                                src="https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=6259d214-8858-404c-813e-eda326021a72&maxDataAge=10&theme=light&autoRefresh=true"
+                            ></iframe>
+                        </div>
+                    </div>
+                    <div class="chart">
+                        <h2>Espacio disponible</h2>
+                        <div class="tabla"></div>
+                    </div>
+                </div>
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number-date">
+                                <p>
+                                    <span id="time">%D%</span>
+                                    <sup class="units">Fecha</sup>
+                                </p>
+                            </div>
+                            <div class="card-name">Ultima Lectura</div>
+                        </div>
+                        <div class="icon-box">
+                            <i
+                                class="fas fa-calendar"
+                                style="color: #059e8a"
+                            ></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+    <script type="text/javascript" src="scripts.js"></script>
 </html>

@@ -9,3 +9,7 @@ socket.on("data", function (data) {
     document.getElementById("humidity_ground").innerHTML = data.Hume_suelo;
     document.getElementById("water").innerHTML = data.Agua;
 });
+
+socket.on("date", function (date) {
+    document.getElementById("time").innerHTML = date.date
+})

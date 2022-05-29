@@ -21,6 +21,7 @@ let temp = 0;
 let hume = 0;
 let hume_sue = 0;
 let agua = 0;
+let fecha = "0000-00-00 00:00:00";
 
 // Rutas API
 app.use(express.static("public"));
@@ -44,7 +45,13 @@ router.post("/api/v1/ambiente", (req, res) => {
 
     // Enviar a DB
     insertData(req.body)
-        .then((datos_guardados) => console.log(datos_guardados))
+        .then((datos_guardados) => {
+            let fecha_iso = datos_guardados.date.toISOString();
+            let fecha_new = fecha_iso.split("T");
+            let tiempo = fecha_new[1].split(".");
+            fecha = fecha_new[0] + " " + tiempo[0];
+            io.emit("date", {date: fecha});
+        })
         .catch((err) => console.error("Datos no validos"));
 });
 
@@ -55,6 +62,7 @@ server.listen(4050, () => {
 // Sockets tiempo real
 io.on("connection", (socket) => {
     io.emit("data", { Temperatura: temp, Humedad: hume, Hume_suelo: hume_sue, Agua: agua });
+    io.emit("date", {date: fecha});
     console.log("a user connected");
 });
 
