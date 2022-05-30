@@ -42,8 +42,6 @@ void IRAM_ATTR pulseCounter()
   pulseCount++;
 }
 
-long senso = 7200000;
-
 void setup() {
   Serial.begin(9600);
   Serial.println("\n");
@@ -218,6 +216,6 @@ void loop() {
   } else {
     digitalWrite(D8, LOW);
   }
-  delay(senso);
+  delay(3600000);
 
 }
