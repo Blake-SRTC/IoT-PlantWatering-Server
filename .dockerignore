@@ -1,1 +1,17 @@
 node_modules
+
+Dockerfile
+
+docker-compose.yml
+
+LICENSE
+
+README.md
+
+.dockerignore
+
+.gitignore
+
+.git
+
+help.txt

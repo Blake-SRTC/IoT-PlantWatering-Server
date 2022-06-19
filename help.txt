@@ -1,0 +1,5 @@
+docker build -t blake0101/iot-plantas .
+
+docker build -t blake0101/iot-plantas-lite .
+
+docker-compose up -d

@@ -8,6 +8,9 @@ const io = new Server(server);
 const path = require("path");
 const router = express.Router();
 
+// Puerto server, entorno o default
+const port = process.env.PORT || 4070
+
 // Configuracion base de datos
 require("./db");
 // Modelos para DB
@@ -50,13 +53,14 @@ router.post("/api/v1/ambiente", (req, res) => {
             let fecha_new = fecha_iso.split("T");
             let tiempo = fecha_new[1].split(".");
             fecha = fecha_new[0] + " " + tiempo[0];
+            // Socket ultimo registro
             io.emit("date", {date: fecha});
         })
         .catch((err) => console.error("Datos no validos"));
 });
 
-server.listen(4050, () => {
-    console.log("listening on *:4050");
+server.listen(port, () => {
+    console.log(`listening on: ${port}`);
 });
 
 // Sockets tiempo real

@@ -1,20 +1,25 @@
 version: "3"
 
 services:
-    iot:
-        container_name: server-IoT
+    iot_1:
+        container_name: server-IoT-1
         restart: always
-        build: .
+        # build: .
+        image: blake0101/iot-plantas-lite
         ports: 
             - "4050:4050"
         environment:
             - TZ=America/La_Paz
-        # links:
-        #     - mongo
-        volumes:
-            - .:/usr/src/app
-    # mongo:
-    #     container_name: iotmongodb
-    #     image: mongo
-    #     ports:
-    #         - "27018:27017"
+            - PORT=4050
+        # volumes:
+        #     - .:/usr/src/app
+    iot_2:
+        container_name: server-IoT-2
+        restart: always
+        # build: .
+        image: blake0101/iot-plantas-lite
+        ports: 
+            - "4060:4060"
+        environment:
+            - TZ=America/La_Paz
+            - PORT=4060
