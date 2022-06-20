@@ -11,6 +11,10 @@ const router = express.Router();
 // Puerto server, entorno o default
 const port = process.env.PORT || 4070
 
+// Dashboards
+const dash_1 = process.env.DASHONE;
+const dash_2 = process.env.DASHTWO;
+
 // Configuracion base de datos
 require("./db");
 // Modelos para DB
@@ -53,6 +57,7 @@ router.post("/api/v1/ambiente", (req, res) => {
             let fecha_new = fecha_iso.split("T");
             let tiempo = fecha_new[1].split(".");
             fecha = fecha_new[0] + " " + tiempo[0];
+            
             // Socket ultimo registro
             io.emit("date", {date: fecha});
         })
@@ -65,6 +70,11 @@ server.listen(port, () => {
 
 // Sockets tiempo real
 io.on("connection", (socket) => {
+
+    // Enviar Dashboard correspondiente
+    io.emit("dashOne", {Dash_1: dash_1, Dash_2: dash_2});
+
+    // Enviar datos iniciales Cache
     io.emit("data", { Temperatura: temp, Humedad: hume, Hume_suelo: hume_sue, Agua: agua });
     io.emit("date", {date: fecha});
     console.log("a user connected");

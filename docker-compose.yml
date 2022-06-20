@@ -11,6 +11,9 @@ services:
         environment:
             - TZ=America/La_Paz
             - PORT=4050
+            - URL=mongodb+srv://planta_1:ayywHwvP3YSzWBS7@cluster0.ovida.mongodb.net/planta_1?retryWrites=true&w=majority
+            - DASHONE=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62afc585-c7d9-4cf2-806b-9ae8fbb3a483&maxDataAge=10&theme=light&autoRefresh=true
+            - DASHTWO=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62afcf01-3e2c-4e9a-88cf-64ff14a2d423&maxDataAge=10&theme=light&autoRefresh=true
         # volumes:
         #     - .:/usr/src/app
     iot_2:
@@ -23,3 +26,6 @@ services:
         environment:
             - TZ=America/La_Paz
             - PORT=4060
+            - URL=mongodb+srv://planta_2:0DfPtW6uyIj32aHL@cluster0.ovida.mongodb.net/planta_2?retryWrites=true&w=majority
+            - DASHONE=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62afcbf6-4b97-4b4a-8955-90dd7d4ebe5f&maxDataAge=10&theme=light&autoRefresh=true
+            - DASHTWO=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62afcf93-71d3-41a3-8b18-6a92956ffde3&maxDataAge=10&theme=light&autoRefresh=true

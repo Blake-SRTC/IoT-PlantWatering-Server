@@ -28,4 +28,4 @@ const iotShema = new Schema({
     }
 });
 
-module.exports = model("ambiente", iotShema);
+module.exports = model("metrica", iotShema);

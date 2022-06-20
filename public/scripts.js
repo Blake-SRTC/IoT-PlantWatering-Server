@@ -1,5 +1,10 @@
 var socket = io();
 
+socket.on("dashOne", function (data) {
+    document.getElementById("dash-1").src = data.Dash_1;
+    document.getElementById("dash-2").src = data.Dash_2;
+})
+
 socket.on("data", function (data) {
 
     console.log(data);

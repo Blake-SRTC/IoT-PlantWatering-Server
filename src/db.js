@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-const URI =
-    "mongodb+srv://blake:Mandrildenoche77@cluster0.ovida.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const URI = process.env.URL;
 
 mongoose
     //.connect("mongodb://mongo/iotdb") // Conexion local
