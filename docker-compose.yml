@@ -29,3 +29,29 @@ services:
             - URL=mongodb+srv://planta_2:0DfPtW6uyIj32aHL@cluster0.ovida.mongodb.net/planta_2?retryWrites=true&w=majority
             - DASHONE=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62afcbf6-4b97-4b4a-8955-90dd7d4ebe5f&maxDataAge=10&theme=light&autoRefresh=true
             - DASHTWO=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62afcf93-71d3-41a3-8b18-6a92956ffde3&maxDataAge=10&theme=light&autoRefresh=true
+    iot_3:
+        container_name: server-IoT-3
+        restart: always
+        # build: .
+        image: blake0101/iot-plantas-lite
+        ports: 
+            - "4070:4070"
+        environment:
+            - TZ=America/La_Paz
+            - PORT=4070
+            - URL=mongodb+srv://planta_2:0DfPtW6uyIj32aHL@cluster0.ovida.mongodb.net/planta_3?retryWrites=true&w=majority
+            - DASHONE=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62b25a43-b622-4ed6-879d-e9ffab8c0997&maxDataAge=10&theme=light&autoRefresh=true
+            - DASHTWO=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62b25a9f-2c44-4bf4-85a3-fdb03c34f531&maxDataAge=10&theme=light&autoRefresh=true
+    iot_4:
+        container_name: server-IoT-4
+        restart: always
+        # build: .
+        image: blake0101/iot-plantas-lite
+        ports: 
+            - "4080:4080"
+        environment:
+            - TZ=America/La_Paz
+            - PORT=4080
+            - URL=mongodb+srv://planta_2:0DfPtW6uyIj32aHL@cluster0.ovida.mongodb.net/planta_4?retryWrites=true&w=majority
+            - DASHONE=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62b25b20-2b11-4420-827c-6d176c310fc1&maxDataAge=10&theme=light&autoRefresh=true
+            - DASHTWO=https://charts.mongodb.com/charts-project-0-hlpxg/embed/charts?id=62b25b50-5876-45c3-8525-9d8f2cf282ff&maxDataAge=10&theme=light&autoRefresh=true
